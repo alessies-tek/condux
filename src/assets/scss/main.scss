@@ -3,11 +3,13 @@ $color1: #FFFFFF;//white
 $color2: #79af2f;//green
 $color3: #64646C;//gray
 $color4: #f2f5f8;//background color
+$color5: #cfcfcf;//light gray
 //theme dark
 $color-dark1: #000000;//black
 $color-dark2: #527e14;//green
 $color-dark3: #363636;//gray
 $color-dark4: #424242;//background color
+$color-dark5: black;//light gray
 //#f2f5f8
 $color-link: #0096c7;
 $footerheight : 60px;
@@ -20,6 +22,12 @@ $footerheight : 60px;
 a{
     text-decoration: none !important;
     color: $color-link !important;
+}
+
+.border-none
+{
+    border: none !important;
+    box-shadow: none !important;
 }
   
 .footer-height
@@ -67,6 +75,14 @@ a{
     {
         background-color: $color3 !important;
     }
+    .bg-color4
+    {
+        background-color: $color4 !important;
+    }
+    .bg-color5
+    {
+        background-color: $color5 !important;
+    }
     &.condux.bg-color4, .bg-color4
     {
         background-color: $color4 !important;
@@ -106,6 +122,14 @@ a{
     .bg-color3
     {
         background-color: $color-dark3 !important;
+    }
+    .bg-color4
+    {
+        background-color: $color-dark4 !important;
+    }
+    .bg-color5
+    {
+        background-color: $color-dark5 !important;
     }
     &.condux.bg-color4, .bg-color4
     {

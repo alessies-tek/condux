@@ -1,8 +1,8 @@
 <template>
 
-    <v-card>
+  <v-card class="bg-color4 border-none">
 
-    <v-card-title>
+    <v-card-title class="bg-color5">
       User
       
       <v-btn
@@ -33,17 +33,17 @@
       :headers="headers"
       :items="desserts"
       :items-per-page="5"     
-      class="elevation-1"
+      class="elevation-1 mb-3"
     ></v-data-table>
     <v-divider/>
-    <v-card-title>
+    <v-card-title class="bg-color5">
       Schedule
     </v-card-title>
     <v-data-table
       :headers="headers"
       :items="desserts"
       :items-per-page="5"
-      class="elevation-1"
+      class="elevation-1 pb-3"
       
     ></v-data-table>
   </v-card>

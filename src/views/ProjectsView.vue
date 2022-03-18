@@ -10,7 +10,7 @@
       <v-toolbar
         flat
       >
-        <v-toolbar-title>Projects</v-toolbar-title>
+        <v-toolbar-title >Projects</v-toolbar-title>
         <v-spacer></v-spacer>
         <v-dialog
           v-model="dialog"

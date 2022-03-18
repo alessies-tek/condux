@@ -7,18 +7,31 @@ const routes = [
   {
     path: '/',
     name: 'home',
-    component: () => import(/* webpackChunkName: "about" */ '../views/HomeView.vue')
+    component: () => import(/* webpackChunkName: "about" */ '../views/HomeView.vue'),
+    meta: { layout: 'MainLayout' }
   },
   {
     path: '/account',
     name: 'account',
-    component: () => import('../views/AccountView.vue')
+    component: () => import('../views/AccountView.vue'),
+    meta: { layout: 'MainLayout' }
   }
   ,
   {
     path: '/projects',
     name: 'projects',
-    component: () => import('../views/ProjectsView.vue')
+    component: () => import('../views/ProjectsView.vue'),
+    meta: { layout: 'MainLayout' }
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: () => import('../views/LoginView.vue')
+  },
+  {
+    path: '/register',
+    name: 'register',
+    component: () => import('../views/RegisterView.vue')
   }
 ]
 

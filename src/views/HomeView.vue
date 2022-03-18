@@ -32,7 +32,7 @@
     <v-data-table
       :headers="headers"
       :items="desserts"
-      :items-per-page="5"
+      :items-per-page="5"     
       class="elevation-1"
     ></v-data-table>
     <v-divider/>
@@ -44,6 +44,7 @@
       :items="desserts"
       :items-per-page="5"
       class="elevation-1"
+      
     ></v-data-table>
   </v-card>
 </template>

@@ -57,21 +57,22 @@
       <!-- Routes -->
       <v-list
         nav
-        dense         
+        dense        
+        class="left-link" 
       >
-        <v-list-item link to="/">
+        <v-list-item link to="/" color="primary">
           <v-list-item-icon>
             <v-icon>mdi-home</v-icon>
           </v-list-item-icon>
           <v-list-item-title>Home</v-list-item-title>
         </v-list-item>
-        <v-list-item link to="/projects">
+        <v-list-item link to="/projects" color="primary">
           <v-list-item-icon>
             <v-icon>mdi-note-multiple</v-icon>
           </v-list-item-icon>
           <v-list-item-title>Projects</v-list-item-title>
         </v-list-item>
-        <v-list-item link to="/account">
+        <v-list-item link to="/account" color="primary">
           <v-list-item-icon>
             <v-icon>mdi-account</v-icon>
           </v-list-item-icon>
@@ -80,13 +81,13 @@
       </v-list>
 
       <template v-slot:append>
-        <v-list density="compact" nav>
-        <v-list-item class="pl-0">
-          <v-list-item-avatar left>
-            <v-icon>mdi-logout-variant</v-icon>
-          </v-list-item-avatar>
-          <v-list-item-title class="font-weight-bold"> Logout</v-list-item-title>
-        </v-list-item>
+        <v-list density="compact" nav class="left-link" >
+          <v-list-item class="pl-0" link to="/login" color="primary">
+            <v-list-item-icon>
+              <v-icon>mdi-logout-variant</v-icon>
+            </v-list-item-icon>
+            <v-list-item-title class="font-weight-bold"> Logout</v-list-item-title>
+          </v-list-item>
       </v-list>
       </template>
 

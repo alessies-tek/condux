@@ -3,6 +3,8 @@
     <v-data-table
     :headers="headers"
     :items="desserts"
+    :loading="loadingTable"
+    :hide-actions="loadingTable"
     sort-by="calories"
     class="elevation-1"
   >
@@ -95,12 +97,15 @@
                 color="secondary"
                 text
                 @click="close"
+                :disabled="loading"
               >
                 Cancel
               </v-btn>
               <v-btn
                 color="primary"
                 text
+                :loading="loading"
+                :disabled="loading"
                 @click="save"
               >
                 Save
@@ -122,19 +127,30 @@
       </v-toolbar>
     </template>
     <template v-slot:[`item.actions`]="{ item }">
-      <v-icon
-        
+      <v-btn
         class="mr-2"
+        fab
+        depressed
+        x-small
         @click="editItem(item)"
+        :disabled="loadingTable"
       >
-        mdi-pencil
-      </v-icon>
-      <v-icon
-        
+        <v-icon dark>
+          mdi-pencil
+        </v-icon>
+      </v-btn>
+      <v-btn
+        class="mx-2"
+        fab
+        depressed
+        x-small
         @click="deleteItem(item)"
+        :disabled="loadingTable"
       >
-        mdi-delete
-      </v-icon>
+        <v-icon dark>
+          mdi-delete
+        </v-icon>
+      </v-btn>
     </template>
     <template v-slot:no-data>
       <v-btn
@@ -149,10 +165,13 @@
 </template>
 
 <script>
+  const delay = ms => new Promise(resolve => setTimeout(resolve, ms))
   export default {
     data: () => ({
       dialog: false,
       dialogDelete: false,
+      loading: false,
+      loadingTable: false,
       headers: [
         {
           text: 'Dessert (100g serving)',
@@ -291,9 +310,12 @@
         this.dialogDelete = true
       },
 
-      deleteItemConfirm () {
-        this.desserts.splice(this.editedIndex, 1)
+      async deleteItemConfirm () {       
         this.closeDelete()
+        this.loadingTable = true
+        await delay(3000)
+        this.desserts.splice(this.editedIndex, 1)
+        this.loadingTable = false
       },
 
       close () {
@@ -312,12 +334,15 @@
         })
       },
 
-      save () {
+      async save () {
+        this.loading = true
+        await delay(3000)
         if (this.editedIndex > -1) {
           Object.assign(this.desserts[this.editedIndex], this.editedItem)
         } else {
           this.desserts.push(this.editedItem)
         }
+        this.loading = false
         this.close()
       },
     },

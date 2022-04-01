@@ -24,6 +24,56 @@
         flat
         class="font-weight-bold"
       ></v-switch>
+      <!-- Notification -->
+      <v-badge
+        :content="messages"
+        :value="messages"
+        overlap
+        class="mx-2"     
+      >
+      <v-btn  
+      @click="showNotification"
+      icon
+      class="d-content"
+      >
+          <v-icon >
+            mdi-bell
+          </v-icon>
+      </v-btn>      
+      </v-badge>
+      <v-menu
+        v-model="showMenu"
+        absolute
+        offset-y
+        :position-x="menuPosition.x"
+        :position-y="menuPosition.y">
+        <v-list
+          dense
+          class="py-0"
+          style="max-width: 400px">
+            <v-list-item
+              v-for="(item, i) in items"
+              :key="i"
+              :class="'border-bottom-color5 cursor-pointer hover4' + (!item.view? ' bg-color2-lighten':'')"
+            >
+              <v-list-item-icon>
+                <v-icon v-text="item.icon"></v-icon>
+              </v-list-item-icon>
+              <v-list-item-content class="text-no-wrap">
+                <v-row>
+                  <v-col class="pb-0">
+                    <v-list-item-title v-text="item.text"></v-list-item-title>
+                  </v-col>
+                  <v-col class="pb-0 text-right">
+                    <v-list-item-action-text v-text="item.date"></v-list-item-action-text>
+                  </v-col>
+                </v-row>
+                <v-list-item-subtitle v-text="item.subtext"></v-list-item-subtitle>
+              </v-list-item-content>
+            </v-list-item>
+        </v-list>
+      </v-menu>
+
     </v-app-bar>
     <!-- left bar -->
     <v-navigation-drawer
@@ -43,16 +93,31 @@
             Condux
           </v-list-item-title>
         </v-list-item>
-
-        <v-list-item link>
-          <v-list-item-content>
-            <v-list-item-title class="subtitle-1 font-weight-bold">
-              Alessio Pampana
-            </v-list-item-title>
-            <v-list-item-subtitle class="font-weight-medium">apampana@es-tek.it</v-list-item-subtitle>
-          </v-list-item-content>
-        </v-list-item>
       </v-list>
+      <v-divider></v-divider>
+      <v-list>
+          <v-list-item class="px-2">
+            <v-list-item-avatar>
+              <v-img src="@/assets/img/researchers/test.jpg"></v-img>
+            </v-list-item-avatar>
+          </v-list-item>
+          <v-list-item link to="/profile">
+            <v-list-item-content>
+              <v-list-item-title class="text-h6 black--text">
+                Alessio Pampana
+              </v-list-item-title>
+              <v-list-item-subtitle>pampana.alessio@gmail.com</v-list-item-subtitle>
+            </v-list-item-content>
+          </v-list-item>
+          <v-list-item link to="/login" color="primary">
+            <v-list-item-icon>
+              <v-icon>mdi-logout-variant</v-icon>
+            </v-list-item-icon>
+            <v-list-item-title class="color2">Logout</v-list-item-title>
+          </v-list-item>
+
+        </v-list>
+
       <v-divider></v-divider>
       <!-- Routes -->
       <v-list
@@ -79,62 +144,70 @@
           <v-list-item-title>Account</v-list-item-title>
         </v-list-item>
       </v-list>
-
-      <template v-slot:append>
-        <v-list density="compact" nav class="left-link" >
-          <v-list-item class="pl-0" link to="/login" color="primary">
-            <v-list-item-icon>
-              <v-icon>mdi-logout-variant</v-icon>
-            </v-list-item-icon>
-            <v-list-item-title class="font-weight-bold"> Logout</v-list-item-title>
-          </v-list-item>
-      </v-list>
-      </template>
-
     </v-navigation-drawer>
     <!-- Pages -->
-    <v-main style="padding-left:56px;">
+    <v-main class="v-main">
       <div class="pa-5">
         <slot></slot>
       </div>     
     </v-main>
     <!-- Footer -->
-    <v-footer
-      app 
-      padless
-      fixed     
-      bottom
-    >
-      <v-card
-        flat
-        tile
-        width="100%"
-        class="bg-footer text-center footer-height"
-      >
-        <v-divider></v-divider>
-
-        <v-card-text>
-          {{ new Date().getFullYear() }} — <strong>Condux</strong>
-        </v-card-text>
-      </v-card>
-    </v-footer>
-
+    <FooterTemplate/>
   </div>
 </template>
 
 <script>
-
+import FooterTemplate from './FooterTemplate';
 export default {
   name: 'MainLayout',
   data: () => ({
-    darkMode: false
+    messages: 2,
+    showMenu : false,
+    darkMode: false,
+    menuPosition: {
+            x: 0,
+            y: 0
+          },
+          items: [
+        {
+          icon: 'mdi-phone',
+          text: 'New call scheduled',
+          subtext: 'you have a new scheduled text',
+          date: '1 minute ago',
+          view: false
+        },
+        {
+          icon: 'mdi-email-open',
+          text: 'New Message',
+          subtext: 'You have a new message from research1',
+          date: '1 minute ago',
+          view: false
+        },
+        {
+          icon: 'mdi-email-open',
+          text: 'New Message',
+          subtext: 'You have a new message from research2',
+          date: '10:59',
+          view: true
+        },
+      ],
   }),
   methods:
   {
-    
+    showNotification(e) 
+    {
+      this.showMenu = true;
+      this.messages = 0;
+      this.menuPosition.x = e.clientX;
+      if (e.clientY < 55) {
+        this.menuPosition.y = 55;
+      } else {
+        this.menuPosition.y = e.clientY;
+      }
+    }
   },
   components: {
-  
+    FooterTemplate
   },
   watch: {
     darkMode(Value){

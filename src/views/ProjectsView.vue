@@ -4,7 +4,7 @@
     :headers="headers"
     :items="desserts"
     :loading="loadingTable"
-    :hide-actions="loadingTable"
+    :hide-default-footer="loadingTable"
     sort-by="calories"
     class="elevation-1"
   >

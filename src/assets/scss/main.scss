@@ -4,9 +4,9 @@ $color2: #79af2f;//green
 $color2-lighten: #e2ffba;
 $color3: #64646C;//gray
 $color4: #f2f5f8;//background color
-$color5: #cfcfcf;//light gray
+$color5: #eae8e8;//light gray
 //theme dark
-$color-dark1: #000000;//black
+$color-dark1: #1E1E1E;//black
 $color-dark2: #527e14;//green
 $color-dark2-lighten: #515f3d;
 $color-dark3: #363636;//gray
@@ -40,11 +40,6 @@ a{
 .footer-height
 {
     height: $footerheight;
-}
-
-.left-bar-height
-{
-    height: 100vh;
 }
 
 .v-main

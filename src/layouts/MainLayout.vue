@@ -80,9 +80,6 @@
       app
       permanent
       expand-on-hover
-      fixed
-      class="left-bar-height"
-      attach
     >
       <v-list>
         <v-list-item class="px-2">
